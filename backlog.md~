@@ -12,17 +12,17 @@ Cédula
 Teléfonos (o2m)
 correo electrónico
 domicilio (+estado, municipio, parroquia)
-+habilidades técnicas (m2m)
-+formación académica (m2m)
-+saberes empíricos (m2m)
+habilidades técnicas (m2m)
+formación académica (m2m)
+saberes empíricos (m2m)
 proyectos en los que ha trabajo (o2m)
 lugar de trabajo (+estado,municipio,parroquia)
-+colectivos a los que pertenece (m2m)
-+proyectos activos con bachaco (m2m)
-+tareas asignadas en esos proyectos (m2m)
+colectivos a los que pertenece (m2m)
+proyectos activos con bachaco (m2m)
+tareas asignadas en esos proyectos (m2m)
 Cuenta en repositorio (tipo: bitbucket, github)
 url de cuenta
-+conocimientos para asumir formación (m2m)
+conocimientos para asumir formación (m2m)
 
 2. Clase: Estados
 3. Clase: Municipios

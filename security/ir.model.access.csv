@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_Activista","Activista","model_activista","base.group_user",1,0,0,0
+"access_TelefonoActivista","TelefonoActivista","model_telefonoactivista","base.group_user",1,0,0,0
+"access_Estado","Estado","model_estado","base.group_user",1,0,0,0
+"access_Municipio","Municipio","model_municipio","base.group_user",1,0,0,0
+"access_Parroquia","Parroquia","model_parroquia","base.group_user",1,0,0,0
+"access_ProyectosTrabajados","ProyectosTrabajados","model_proyectostrabajados","base.group_user",1,0,0,0
