@@ -8,34 +8,49 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Activista">
-            <group string="'Registro del Activista'" col="4" colspan="2">
+            <sheet>
+            <group string="Registro del Activista" col="4" colspan="2">
                 <field name="nombres" select="1"/>
-                <field name="apellidos" select="2"/>
-                <field name="cedula" select="0"/>
-                <field name="correo" select="0"/>
-                <field name="telefono_ids" select="0" widget="one2many">
+                <field name="apellidos" select="1"/>
+                <field name="aka" select="1"/>
+                <field name="cedula" select="1" placeholder="Ej: 20123123"/>
+                <field name="correo" select="0" widget="email"/>
+                <field name="telefono_ids" select="0" widget="one2many" nolabel="1" colspan="2">
                     <tree editable="True">
-                        <field name="telefono"/>
+                        <field name="telefono" string="Teléfonos"/>
                     </tree>
                 </field>
-                <field name="proyectos_ids" select="0"  widget="one2many">
-                    <tree editable="True">
-                        <field name="proyecto"/>
-                    </tree>
-                </field>
-                <field name="repositorio_tipo" select="0"/>
-                <field name="repositorio_url" select="0"/>
-                <separator string="'Dirección de Domicilio'" colspan="4"/>
-                <field name="dom_estado_id" select="0"/>
-                <field name="dom_municipio_id" domain="[('estado_id','=',[dom_estado_id])]" select="0"/>
-                <field name="dom_parroquia_id" domain="[('municipio_id','=',[dom_municipio_id])]" select="0"/>
-                <separator string="'Dirección del Lugar de Trabajo'" colspan="4"/>
-                <field name="trab_estado_id" select="0"/>
-                <field name="trab_municipio_id" domain="[('estado_id','=',[trab_estado_id])]" select="0"/>
-                <field name="trab_parroquia_id" domain="[('municipio_id','=',[trab_municipio_id])]" select="0"/>
-
-
             </group>
+            
+            <notebook>
+                <page string="Domicilio" name="domicilio">
+                    <group col="4" colspan="2">
+                        <field name="dom_estado_id" colspan="2" select="0"/>
+                        <field name="dom_municipio_id" colspan="2" domain="[('estado_id','=',[dom_estado_id])]" select="0"/>
+                        <field name="dom_parroquia_id" colspan="2" domain="[('municipio_id','=',[dom_municipio_id])]" select="0"/>
+                    </group>
+                </page>
+                <page string="Trabajo" name="trabajo">
+                    <group col="4" colspan="2">
+                    <field name="trab_estado_id" colspan="2" select="0"/>
+                    <field name="trab_municipio_id" colspan="2" domain="[('estado_id','=',[trab_estado_id])]" select="0"/>
+                    <field name="trab_parroquia_id" colspan="2" domain="[('municipio_id','=',[trab_municipio_id])]" select="0"/>
+                    </group>
+                </page>
+                <page string="Colaboración" name="colaboracion">
+                    <group col="4" colspan="2">
+                    <field name="repositorio_tipo" select="0" widget="radio"/>
+                    <field name="repositorio_url" widget="url" select="0"/>
+                    <field name="proyectos_ids" nolabel="1" colspan="4" select="0"  widget="one2many">
+                        <separator string="Proyectos en los que ha trabajado" colspan="4"/>
+                        <tree editable="True">
+                            <field name="proyecto"/>
+                        </tree>
+                    </field>
+                    </group>
+                </page>
+                </notebook>
+            </sheet>
             </form>
         </field>
     </record>
@@ -47,18 +62,12 @@
             <tree string="Activista">
                 <field name="nombres"/>
                 <field name="apellidos"/>
+                <field name="aka"/>
                 <field name="cedula"/>
                 <field name="telefono_ids"/>
                 <field name="correo"/>
                 <field name="dom_estado_id"/>
-                <field name="dom_municipio_id"/>
-                <field name="dom_parroquia_id"/>
                 <field name="proyectos_ids"/>
-                <field name="trab_estado_id"/>
-                <field name="trab_municipio_id"/>
-                <field name="trab_parroquia_id"/>
-                <field name="repositorio_tipo"/>
-                <field name="repositorio_url"/>
 
             </tree>
         </field>
