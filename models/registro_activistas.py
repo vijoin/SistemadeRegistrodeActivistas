@@ -41,7 +41,14 @@ class Activista(models.Model):
     dom_estado_id = fields.Many2one('estado','Estado', help='Estado de Domicilio del Asistente')
     dom_municipio_id = fields.Many2one('municipio','Municipio', help='Municipio de Domicilio del Asistente')
     dom_parroquia_id = fields.Many2one('parroquia','Parroquia', help='Parroquia de Domicilio del Asistente')
-    proyectos_ids = fields.One2many('proyectostrabajados','activista_id','Proyectos en los que ha trabajado', help='Proyectos en los que ha trabajado')
+    #proyectos_ids = fields.One2many('proyectostrabajados','activista_id','Proyectos en los que ha trabajado', help='Proyectos en los que ha trabajado')
+    proyectos_ids = fields.Many2many(
+        'proyectos',
+        'proyectos_activistas_rel',
+        'activista_id',
+        'proyecto_id',
+        'Proyectos del Activista',
+        help='Proyectos en los que ha trabajado')
     trab_estado_id = fields.Many2one('estado','Estado', help='Estado del lugar de trabajo')
     trab_municipio_id = fields.Many2one('municipio','Municipio')
     trab_parroquia_id = fields.Many2one('parroquia','Parroquia', help='Parroquia del lugar de trabajo')
@@ -67,11 +74,16 @@ class Activista(models.Model):
         self.trab_parroquia_id = ''
 
 
-class ProyectosTrabajados(models.Model):
+class Proyectos(models.Model):
     """Proyectos en los que ha trabajado el Activista"""
-    _name = 'proyectostrabajados'
+    _name = 'proyectos'
     _rec_name = 'proyecto'
     proyecto = fields.Char(size=50,required=True, help='Nombre del Proyecto en el que ha trabajado')
-    activista_id = fields.Many2one('activista','Activista')
-
+    activista_id = fields.Many2many(
+        'activista',
+        'proyectos_activistas_rel',
+        'proyecto_id',
+        'activista_id' ,
+        'Activistas en el proyecto',
+        help='Activistas que han trabajado en este Proyecto')
 
