@@ -41,12 +41,14 @@
                     <group col="4" colspan="2">
                     <field name="repositorio_tipo" select="0" widget="radio"/>
                     <field name="repositorio_url" widget="url" select="0"/>
-                    <field name="proyectos_ids" nolabel="1" colspan="4" select="0"  widget="one2many">
+                    <separator string="Proyectos en los que ha trabajado" colspan="4"/>
+                    <field name="proyectos_ids" nolabel="1" colspan="4" select="0"/>
+                    <!--field name="proyectos_ids" nolabel="1" colspan="4" select="0"  widget="one2many">
                         <separator string="Proyectos en los que ha trabajado" colspan="4"/>
                         <tree editable="True">
-                            <field name="proyecto"/>
+                            <field name="proyecto_id"/>
                         </tree>
-                    </field>
+                    </field-->
                     </group>
                 </page>
                 </notebook>
@@ -112,12 +114,12 @@
         <field name="view_mode">tree,form</field>
     </record>
         
-    <record model="ir.ui.view" id="view_proyectostrabajados_form">
-        <field name="name">proyectostrabajados.form</field>
-        <field name="model">proyectostrabajados</field>
+    <record model="ir.ui.view" id="view_proyectos_form">
+        <field name="name">proyectos</field>
+        <field name="model">proyectos</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <form string="proyectostrabajados">
+            <form string="proyectos">
             <group col="4" colspan="2">
                 <field name="proyecto" select="1"/>
                 
@@ -126,21 +128,21 @@
             </form>
         </field>
     </record>
-    <record model="ir.ui.view" id="view_proyectostrabajados_tree">
-        <field name="name">proyectostrabajados.tree</field>
-        <field name="model">proyectostrabajados</field>
+    <record model="ir.ui.view" id="view_proyectos_tree">
+        <field name="name">proyectos.tree</field>
+        <field name="model">proyectos</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree string="proyectostrabajados">
+            <tree string="proyectos">
                 <field name="proyecto"/>
                 <field name="activista_id"/>
 
             </tree>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_proyectostrabajados">
+    <record model="ir.actions.act_window" id="action_proyectos">
         <field name="name">Proyectos Trabajado</field>
-        <field name="res_model">proyectostrabajados</field>
+        <field name="res_model">proyectos</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -160,7 +162,7 @@
     <menuitem name="Estados" id="menu_estado" action="l10n_ve_dpt.action_estado" parent="menu_configuracion"/>
     <menuitem name="Municipios" id="menu_municipio" action="l10n_ve_dpt.action_municipio" parent="menu_configuracion"/>
     <menuitem name="Parroquia" id="menu_parroquia" action="l10n_ve_dpt.action_parroquia" parent="menu_configuracion"/>
-    <menuitem name="Proyectos Trabajado" id="menu_proyectostrabajados" action="action_proyectostrabajados" parent="menu_configuracion"/>
+    <menuitem name="Proyectos Trabajado" id="menu_proyectos" action="action_proyectos" parent="menu_configuracion"/>
 
         
 </data>
