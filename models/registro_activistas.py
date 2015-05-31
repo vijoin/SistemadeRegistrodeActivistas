@@ -25,17 +25,18 @@ class TelefonoActivista(models.Model):
     """Telefono del Activista"""
     _name = 'telefonoactivista'
     _rec_name = 'telefono'
-    telefono = fields.Char('Telefono',size=12,required=True, help='Número de telefono del Activista')
+    telefono = fields.Char('Teléfono',size=12,required=True, help='Número de telefono del Activista')
     activista_id = fields.Many2one('activista','Activista', help='Relacion entre el numero de telefono y el activista')
 
 class Activista(models.Model):
     """Registro de Activista de Bachaco-ve"""
     _name = 'activista'
     _rec_name = 'nombres'
-    nombres = fields.Char('Nombre',size=30,required=True, help='Nombre del Activista')
-    apellidos = fields.Char('Apellidos',size=30,required=True, help='Apellidos del Activista')
-    cedula = fields.Char('Cédula',size=10,required=True, help='Cédula del Activista')
-    telefono_ids = fields.One2many('telefonoactivista','activista_id','Telefono',required=True, help='Telefono(s) del Activista')
+    nombres = fields.Char(size=30,required=True, help='Nombre del Activista')
+    apellidos = fields.Char(size=30,required=True, help='Apellidos del Activista')
+    aka = fields.Char('A.K.A.',size=30,required=True, help='Apellidos del Activista')
+    cedula = fields.Char('Cédula',size=8,required=True, help='Cédula del Activista')
+    telefono_ids = fields.One2many('telefonoactivista','activista_id','Teléfonos',required=True, help='Telefono(s) del Activista')
     correo = fields.Char('Correo Electrónico',size=30,required=True, help='Correo Electrónico del Activista')
     dom_estado_id = fields.Many2one('estado','Estado', help='Estado de Domicilio del Asistente')
     dom_municipio_id = fields.Many2one('municipio','Municipio', help='Municipio de Domicilio del Asistente')
@@ -44,7 +45,7 @@ class Activista(models.Model):
     trab_estado_id = fields.Many2one('estado','Estado', help='Estado del lugar de trabajo')
     trab_municipio_id = fields.Many2one('municipio','Municipio')
     trab_parroquia_id = fields.Many2one('parroquia','Parroquia', help='Parroquia del lugar de trabajo')
-    repositorio_tipo = fields.Selection([('B','Bitbucket'),('G','GitHub')],'Tipo de Repositorio',required=True, help='Tipo de Repositorio ')
+    repositorio_tipo = fields.Selection([('bitbucket','BitBucket'),('github','GitHub')],'Tipo de Repositorio',required=True, help='Tipo de Repositorio ')
     repositorio_url = fields.Char('URL de la Cuenta',size=50, help='URL de la Cuenta del Repositorio')
     
     @api.onchange('dom_estado_id')
@@ -70,7 +71,7 @@ class ProyectosTrabajados(models.Model):
     """Proyectos en los que ha trabajado el Activista"""
     _name = 'proyectostrabajados'
     _rec_name = 'proyecto'
-    proyecto = fields.Char('Proyecto',size=50,required=True, help='Nombre del Proyecto en el que ha trabajado')
+    proyecto = fields.Char(size=50,required=True, help='Nombre del Proyecto en el que ha trabajado')
     activista_id = fields.Many2one('activista','Activista')
 
 
