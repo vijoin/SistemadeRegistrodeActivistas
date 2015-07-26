@@ -31,7 +31,7 @@ class TelefonoActivista(models.Model):
 class Activista(models.Model):
     """Registro de Activista de Bachaco-ve"""
     _name = 'activista'
-    _rec_name = 'nombres'
+    #_rec_name = 'nombres'
     nombres = fields.Char(size=30,required=True, help='Nombre del Activista')
     apellidos = fields.Char(size=30,required=True, help='Apellidos del Activista')
     aka = fields.Char('A.K.A.',size=30,required=True, help='Apellidos del Activista')
@@ -54,6 +54,14 @@ class Activista(models.Model):
     trab_parroquia_id = fields.Many2one('parroquia','Parroquia', help='Parroquia del lugar de trabajo')
     repositorio_tipo = fields.Selection([('bitbucket','BitBucket'),('github','GitHub')],'Tipo de Repositorio',required=True, help='Tipo de Repositorio ')
     repositorio_url = fields.Char('URL de la Cuenta',size=50, help='URL de la Cuenta del Repositorio')
+    
+    #Método utilizado para personalizar el _rec_name para que muestre nombres y apellidos juntos
+    def name_get(self, cr, uid, ids, context=None):
+        res = []
+        activistas = self.browse(cr, uid, ids, context)
+        for activista in activistas:
+            res.append((activista.id, activista.nombres + ' ' + activista.apellidos))
+        return res
     
     @api.onchange('dom_estado_id')
     def _on_change_limpiar_dom(self):
